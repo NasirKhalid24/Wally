@@ -1,6 +1,6 @@
 const wa = require('@open-wa/wa-automate');
 
-// const message_parser = require('./utils/message_parser');
+const message_parser = require('./utils/message_parser');
 const MESSAGE_PREFIX = '!';
 
 async function launch(){
@@ -37,9 +37,7 @@ function start(client) {
 
         // Handling incoming messages
         client.onMessage(message => {
-            if (message.body === 'Hi') {
-            client.sendText(message.from, '👋 Hello!');
-            }
+            message_parser(client, message);
         });
 
         // Handling incoming Whatsapp calls
@@ -51,6 +49,7 @@ function start(client) {
         client.onAddedToGroup(({ groupMetadata: { id }, contact: { name } }) => {
             client.sendText(id, 'Sorry I cannot be added to groups (as of now 😉)').then(() => client.leaveGroup(id))
         })
+        
     }catch(error){
         client.kill();
         console.log("ERROR = ", error)

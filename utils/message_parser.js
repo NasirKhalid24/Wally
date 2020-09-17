@@ -1,3 +1,7 @@
+const MESSAGE_PREFIX = '#'
+const ARGUMENT_PREFIX = '-'
+
+const decode_message = require('./decode_message');
 
 module.exports = message_parser = async(client, message) => {
 
@@ -10,16 +14,23 @@ module.exports = message_parser = async(client, message) => {
         // 5. extract all images from message in case they send multiple
         // 6. send back all images as stickers
         
-        if (message.body === '#sticker' && message.isGroupMsg == true) {
-            let unix_timestap = message.timestamp
-            var date = new Date(unix_timestap * 1000);
-            var formattedTime = date;
+        let message_and_arguments = decode_message(message, MESSAGE_PREFIX, ARGUMENT_PREFIX);
+        
+        // if(message.body == 'random'){
+        //     console.log(message);
+        //     client.sendText(message.from, 'RANDOM NUMBER');
+        // }
 
-            console.log({"Message content": `${message.body}`,"Time send":`${formattedTime}`});
+        // if (message.body === 'Hi' && message.isGroupMsg == true) {
+        //     let unix_timestap = message.timestamp
+        //     var date = new Date(unix_timestap * 1000);
+        //     var formattedTime = date;
+
+        //     console.log({"Message content": `${message.body}`,"Time send":`${formattedTime}`});
 
 
-            client.sendText(message.from, '👋👋🏼 Hello!');
-        }
+        //     client.sendText(message.from, '👋👋🏼 Hello!');
+        // }
 
     } catch(err){
         console.log("ERROR IN MESSAGE PARSER = ", err);

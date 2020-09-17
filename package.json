@@ -14,5 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@open-wa/wa-automate": "^2.0.22"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
   }
 }

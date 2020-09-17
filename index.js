@@ -1,7 +1,6 @@
 const wa = require('@open-wa/wa-automate');
 
 const message_parser = require('./utils/message_parser');
-const MESSAGE_PREFIX = '!';
 
 async function launch(){
     try{
@@ -37,12 +36,14 @@ function start(client) {
 
         // Handling incoming messages
         client.onMessage(message => {
+            // Commented for now
+            // if(message.isGroupMsg == true) { return console.log("ERROR - RECEIVED A GROUP MESSAGE")}
             message_parser(client, message);
         });
 
         // Handling incoming Whatsapp calls
         client.onIncomingCall(async call=>{
-            await client.sendText(call.peerJid._serialized, 'Sorry I cannot accept calls 📵');
+            await client.sendText(call.peerJid, 'Sorry I cannot accept calls 📵');
         });
 
         // Handle being added to group

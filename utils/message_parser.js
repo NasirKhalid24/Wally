@@ -14,7 +14,20 @@ module.exports = message_parser = async(client, message) => {
         // 5. extract all images from message in case they send multiple
         // 6. send back all images as stickers
         
-        let message_and_arguments = decode_message(message, MESSAGE_PREFIX, ARGUMENT_PREFIX);
+        // Get entire argument wheter its chat or media type - if null then return and send message
+        let body = message.body;
+        body = body.toLowerCase().trim();
+
+        if(message.type !== 'chat'){
+            body = message.caption;
+
+            if(body === ""){
+                client.sendText(message.from, 'No text found in message!');
+                return;
+            }
+        }
+
+        let message_and_arguments = decode_message(body, MESSAGE_PREFIX, ARGUMENT_PREFIX);
         
         // if(message.body == 'random'){
         //     console.log(message);

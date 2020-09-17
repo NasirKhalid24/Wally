@@ -25,24 +25,48 @@
 //     "value": "Value of the argument - NULL if there is none"
 // }
 
-module.exports = decode_message = async(message, command_prefix, argument_prefix) => {
-      
-    const REGEX_COMMAND = /#(\w+)/;
+module.exports = decode_message = (body, command_prefix, argument_prefix, value_prefix) => {
     
+    // Create REGEX for getting the command
+    const REGEX_COMMAND = new RegExp(`${command_prefix}(\\w+)`, 'gi');
+    // Create REGEX for getting the argument
+    const ARGS_COMMAND = new RegExp(`${argument_prefix}(\\w+)${value_prefix}?([a-zA-Z0-9_ ]+)`, 'gi');
+
+    // Template for return value
     let return_val = {
         "command": "",
         "arguments": []
     };
-
-    // Get entire argument wheter its chat or media type - if null then return
-    let body = message.body;
-    if(message.type !== 'chat'){
-        body = message.caption;
-
-        if(body === ""){
-            return return_val;
-        }
+    
+    // If no body passed or body does not have command return empty return
+    if(body.trim() === "" || !body.trim().includes(command_prefix)){
+        return return_val;
     }
 
-    console.log(body);
+    // Extract the command from message (if multiple only returns the first)
+    return_val.command = REGEX_COMMAND.exec(body)[1].toLowerCase();
+
+    // Extract the arguments from message (can return multiple)
+    let args_extracted = body.match(ARGS_COMMAND);
+
+    // If no arguments passed
+    if(args_extracted === null){
+        return return_val;
+    }
+
+    // If there are arguments then create their objects and append them
+    for(var i=0; i<args_extracted.length; i++){
+        let x = args_extracted[i].trim().split(value_prefix);
+        let r = {"argument":"","value":""}
+        if(x.length === 1){
+            r.argument = x[0].split(argument_prefix)[1].toLowerCase();
+            r.value = null;
+        }else if(x.length === 2){
+            r.argument = x[0].split(argument_prefix)[1].toLowerCase();
+            r.value = x[1].trim();
+        }
+        return_val.arguments.push(r);
+    }
+
+    return return_val;
 }

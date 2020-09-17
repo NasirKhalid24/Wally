@@ -2,3 +2,4 @@ node_modules
 session.data.json
 
 test.js
+coverage

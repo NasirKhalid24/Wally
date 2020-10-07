@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@open-wa/wa-automate": "^2.0.22"
+    "@open-wa/wa-automate": "^2.0.29"
   },
   "devDependencies": {
     "jest": "^26.4.2"

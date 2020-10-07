@@ -16,6 +16,7 @@ async function launch(){
 
             //kill the process if the browser crashes/is closed manually
             killProcessOnBrowserClose: true
+            
         });
         await start(client);
     } catch(error){
@@ -36,8 +37,7 @@ function start(client) {
 
         // Handling incoming messages
         client.onMessage(message => {
-            // Commented for now
-            // if(message.isGroupMsg == true) { return console.log("ERROR - RECEIVED A GROUP MESSAGE")}
+            // Sent to message parser to handle user interactions
             message_parser(client, message);
         });
 

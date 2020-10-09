@@ -8,17 +8,16 @@ module.exports = message_parser = async(client, message) => {
 
     try{
         // Get entire argument wheter its chat or media type - if null then return and send message
-        let body = message.body;
-        body = body.toLowerCase().trim();
 
-        if(message.type !== 'chat'){
+        let body = '';
+
+        if(message.tpye === 'chat'){
+            body = message.body;
+        }else{
             body = message.caption;
-
-            if(body === ""){
-                client.sendText(message.from, 'No text found in message!');
-                return;
-            }
         }
+        
+        body = body.toLowerCase().trim();
         
         let command_and_arguments = decode_message(body, constants.MESSAGE_PREFIX, constants.ARGUMENT_PREFIX, constants.VALUE_PREFIX);
         

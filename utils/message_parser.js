@@ -7,8 +7,7 @@ const Sticker = require('../commands/Sticker');
 module.exports = message_parser = async(client, message) => {
 
     try{
-        // Get entire argument wheter its chat or media type - if null then return and send message
-
+        // Get entire argument wheter its chat or media type
         let body = '';
 
         if(message.type === 'chat'){

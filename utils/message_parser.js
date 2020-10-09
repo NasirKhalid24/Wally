@@ -3,8 +3,9 @@ const ARGUMENT_PREFIX = '-'
 const VALUE_PREFIX = '='
 
 const decode_message = require('./decode_message');
-const Test = require('../commands/Test');
+// const Test = require('../commands/Test');
 const Sticker = require('../commands/Sticker');
+const Empty = require('../commands/Empty');
 
 module.exports = message_parser = async(client, message) => {
 
@@ -32,13 +33,18 @@ module.exports = message_parser = async(client, message) => {
 
         switch(command_and_arguments.command){
 
+            case '':{
+                Sticker(client, message, command_and_arguments.arguments);
+                break
+            }
+
             case 'sticker':{
                 Sticker(client, message, command_and_arguments.arguments);
                 break
             }
 
             case 'test':{
-                Test(client, message, command_and_arguments.arguments);
+                // Test(client, message, command_and_arguments.arguments);
                 break
             }
         }

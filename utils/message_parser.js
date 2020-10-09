@@ -1,11 +1,8 @@
-const MESSAGE_PREFIX = '#'
-const ARGUMENT_PREFIX = '-'
-const VALUE_PREFIX = '='
-
+const constants = require('../data/constants');
 const decode_message = require('./decode_message');
-// const Test = require('../commands/Test');
 const Sticker = require('../commands/Sticker');
-const Empty = require('../commands/Empty');
+
+// const Test = require('../commands/Test');
 
 module.exports = message_parser = async(client, message) => {
 
@@ -22,8 +19,8 @@ module.exports = message_parser = async(client, message) => {
                 return;
             }
         }
-
-        let command_and_arguments = decode_message(body, MESSAGE_PREFIX, ARGUMENT_PREFIX, VALUE_PREFIX);
+        
+        let command_and_arguments = decode_message(body, constants.MESSAGE_PREFIX, constants.ARGUMENT_PREFIX, constants.VALUE_PREFIX);
         
         // SHAPE OF MESSAGE AND ARGUMENTS
         // let message_and_arguments: {

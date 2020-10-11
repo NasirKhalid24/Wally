@@ -12,12 +12,12 @@ module.exports = message_parser = async(client, message) => {
 
         if(message.type === 'chat'){
             body = message.body;
-        }else{
+        }else if(message.caption){
             body = message.caption;
         }
 
         body = body.toLowerCase().trim();
-        
+
         let command_and_arguments = decode_message(body, constants.MESSAGE_PREFIX, constants.ARGUMENT_PREFIX, constants.VALUE_PREFIX);
         
         // SHAPE OF MESSAGE AND ARGUMENTS

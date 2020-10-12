@@ -1,7 +1,7 @@
 const constants = require('../data/constants');
 const decode_message = require('./decode_message');
 const Sticker = require('../commands/Sticker');
-
+const Youtube = require('../commands/Youtube');
 // const Test = require('../commands/Test');
 
 module.exports = message_parser = async(client, message) => {
@@ -29,7 +29,7 @@ module.exports = message_parser = async(client, message) => {
         switch(command_and_arguments.command){
 
             case '':{
-                Sticker(client, message, command_and_arguments.arguments);
+                Youtube(client, message, command_and_arguments.arguments);
                 break
             }
 

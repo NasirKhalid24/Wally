@@ -11,6 +11,9 @@ async function launch(){
             //log all browser console output
             logConsole: true,
 
+            // Use Chrome (to send videos)
+            useChrome: true,
+
             //or just browser errors
             logConsoleErrors: true,
 

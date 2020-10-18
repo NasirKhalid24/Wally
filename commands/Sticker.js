@@ -11,7 +11,7 @@ module.exports = Sticker = async (client, message, arguments) => {
     case 'location':
     case 'vcard':
       {
-        await client.sendText(message.from, 'Sorry!, this media doesn\'t seem to be an image, send an image pls');
+        await client.sendText(message.from, 'No image found!\n Send #help to see all commands');
         break
       }
 
@@ -33,7 +33,7 @@ module.exports = Sticker = async (client, message, arguments) => {
     }
 
     case('chat'):{
-      await client.sendText(message.from, 'Sorry!, I couldn\'t find an image in the message! \n Please sent an Image with the caption #sticker');
+      await client.sendText(message.from, 'No image found!\n Send #help to see all commands');
       break
     }
 

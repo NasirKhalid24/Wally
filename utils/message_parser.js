@@ -1,7 +1,7 @@
 const constants = require('../data/constants');
 const decode_message = require('./decode_message');
 const Sticker = require('../commands/Sticker');
-
+const Youtube = require('../commands/Youtube');
 // const Test = require('../commands/Test');
 
 module.exports = message_parser = async(client, message) => {
@@ -15,8 +15,6 @@ module.exports = message_parser = async(client, message) => {
         }else if(message.caption){
             body = message.caption;
         }
-
-        body = body.toLowerCase().trim();
 
         let command_and_arguments = decode_message(body, constants.MESSAGE_PREFIX, constants.ARGUMENT_PREFIX, constants.VALUE_PREFIX);
         
@@ -35,6 +33,11 @@ module.exports = message_parser = async(client, message) => {
 
             case 'sticker':{
                 Sticker(client, message, command_and_arguments.arguments);
+                break
+            }
+
+            case 'youtube':{
+                Youtube(client, message, command_and_arguments.arguments);
                 break
             }
 

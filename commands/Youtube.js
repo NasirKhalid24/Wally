@@ -3,18 +3,34 @@
 const wa = require('@open-wa/wa-automate');
 const youtubedl = require('youtube-dl')
 
+
+
 module.exports = Youtube = async (client, message, arguments) => {
     
-    const url = 'https://www.youtube.com/watch?v=oz9w8FkjIRs'
+        
+        const url = message.body
+        console.log(url)
+        const aud = true
+      
+        youtubedl.getInfo(url,function(err, info)  {
+        // if (err) throw err
+            if(typeof info === 'undefined'){
+                client.sendText(message.from, 'Sorry!, this video seems to be invalid. Please ensure its not a private video');      
+                }
+            else{
+                if(info._duration_raw >= 300){
+                    client.sendText(message.from, 'Hmm this video seems to be too long, please ensure the video is 5 mins or lower');
+                }
+                else{
+                        client.sendText(message.from, `Video, "${info.title}" found. Processing the video now, please wait`);
+                        client.sendFileFromUrl(message.from, info.url);
+                        console.log(info._duration_raw)
+                    }
+                }
+            })
+        }
 
-    youtubedl.getInfo(url, function(err, info) {
-        if (err) throw err
-        console.log(info)
-        client.sendFileFromUrl(message.from, info.url);
-    })
-    
-}
-
+        
 // INFO LOOKS LIKE THIS
 // {
 //     upload_date: '20170527',

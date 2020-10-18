@@ -25,6 +25,8 @@
 //     "value": "Value of the argument - NULL if there is none"
 // }
 
+const youtube_link_extractor = require('./youtube_link_extractor');
+
 module.exports = decode_message = (body, command_prefix, argument_prefix, value_prefix) => {
     
     // Create REGEX for getting the command
@@ -43,6 +45,12 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
         return return_val;
     }
 
+    // Check for Youtube links
+    return_val = youtube_link_extractor(body, return_val);
+    if(return_val.command !== ""){
+        return return_val;
+    }
+    
     // Extract the command from message (if multiple only returns the first)
     return_val.command = REGEX_COMMAND.exec(body)[1].toLowerCase();
 

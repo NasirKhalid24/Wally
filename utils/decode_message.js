@@ -39,18 +39,25 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
         "command": "",
         "arguments": []
     };
-    
-    // If no body passed or body does not have command return empty return
-    if(body.trim() === "" || !body.trim().includes(command_prefix)){
+
+    // If no body passed 
+    if(body.trim() === ""){
         return return_val;
     }
-
+    
     // Check for Youtube links
     return_val = youtube_link_extractor(body, return_val);
     if(return_val.command !== ""){
         return return_val;
     }
+
+    body = body.toLowerCase().trim();
     
+    // If no body has no command  
+    if(!body.trim().includes(command_prefix)){
+        return return_val;
+    }
+
     // Extract the command from message (if multiple only returns the first)
     return_val.command = REGEX_COMMAND.exec(body)[1].toLowerCase();
 

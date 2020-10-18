@@ -16,8 +16,6 @@ module.exports = message_parser = async(client, message) => {
             body = message.caption;
         }
 
-        body = body.toLowerCase().trim();
-
         let command_and_arguments = decode_message(body, constants.MESSAGE_PREFIX, constants.ARGUMENT_PREFIX, constants.VALUE_PREFIX);
         
         // SHAPE OF MESSAGE AND ARGUMENTS
@@ -29,12 +27,17 @@ module.exports = message_parser = async(client, message) => {
         switch(command_and_arguments.command){
 
             case '':{
-                Youtube(client, message, command_and_arguments.arguments);
+                Sticker(client, message, command_and_arguments.arguments);
                 break
             }
 
             case 'sticker':{
                 Sticker(client, message, command_and_arguments.arguments);
+                break
+            }
+
+            case 'youtube':{
+                Youtube(client, message, command_and_arguments.arguments);
                 break
             }
 

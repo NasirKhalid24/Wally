@@ -18,6 +18,5 @@ module.exports = youtube_link_extractor = (message_text, return_val) => {
             }]
         }
     }
-
     return return_val;
 }

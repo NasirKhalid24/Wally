@@ -43,6 +43,8 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
         return return_val;
     }
 
+    // Check for Youtube links
+    
     // Extract the command from message (if multiple only returns the first)
     return_val.command = REGEX_COMMAND.exec(body)[1].toLowerCase();
 

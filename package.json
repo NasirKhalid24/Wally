@@ -13,7 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@open-wa/wa-automate": "^2.0.29"
+    "@open-wa/wa-automate": "^2.0.29",
+    "youtube-dl": "^3.0.2"
   },
   "devDependencies": {
     "jest": "^26.4.2"

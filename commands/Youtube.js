@@ -1,7 +1,8 @@
 // Youtube command - Downloads youtube video
 
 const wa = require('@open-wa/wa-automate');
-const youtubedl = require('youtube-dl')
+const youtubedl = require('youtube-dl');
+const {performance} = require('perf_hooks');
 
 
 
@@ -26,8 +27,17 @@ module.exports = Youtube = async (client, message, arguments) => {
                 client.sendText(message.from, 'This video is too long to send on Whatsapp\nPlease ensure the video is 5 mins or less');
             }
             else{
+                // var t0 = performance.now()
                 client.sendText(message.from, `Video "${info.title}" found\nDownloading ⏳`);
-                client.sendFileFromUrl(message.from, info.url);
+                
+                //finding the position of the format array with id 18
+                var posi = info.formats.findIndex(x => x.format_id == '18')
+                
+                client.sendFileFromUrl(message.from, info.formats[posi].url);
+                console.log(info.formats)
+             
+                // var t1 = performance.now()
+                // client.sendText(message.from, `time taken ${t1-t0} `);
             }
         }
     })

@@ -24,20 +24,24 @@ module.exports = Youtube = async (client, message, arguments) => {
             }
         else{
             if(info._duration_raw >= 300){
-                client.sendText(message.from, 'This video is too long to send on Whatsapp\nPlease ensure the video is 5 mins or less');
+                var position_240p = info.formats.findIndex(x => x.format_id == '133')
+                if(info.formats[position_240p].filesize <= 25000000 && info._duration_raw < 900){
+                    client.sendText(message.from, `Video "${info.title}" found\n\nThis may take a while, please wait. \n\nDownloading ⏳`);
+                    client.sendFileFromUrl(message.from, info.formats[position_240p].url,`${info.title}.mp4`);
+                }
+                else{
+                    client.sendText(message.from, 'This video is too long to send on Whatsapp\nPlease ensure the video is 15 mins or less');
+                }
             }
             else{
-                // var t0 = performance.now()
+ 
                 client.sendText(message.from, `Video "${info.title}" found\nDownloading ⏳`);
                 
                 //finding the position of the format array with id 18
                 var posi = info.formats.findIndex(x => x.format_id == '18')
                 
                 client.sendFileFromUrl(message.from, info.formats[posi].url);
-                console.log(info.formats)
              
-                // var t1 = performance.now()
-                // client.sendText(message.from, `time taken ${t1-t0} `);
             }
         }
     })

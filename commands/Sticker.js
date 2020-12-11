@@ -11,7 +11,7 @@ module.exports = Sticker = async (client, message, arguments) => {
     case 'location':
     case 'vcard':
       {
-        await client.sendText(message.from, 'No image found!\n Send #help to see all commands');
+        await client.sendText(message.from, 'No image found!\nUse #help to see all commands');
         break
       }
 
@@ -19,7 +19,7 @@ module.exports = Sticker = async (client, message, arguments) => {
         var document_type = message.mimetype
 
         if(document_type != 'image/png' && document_type != 'image/jpg' && document_type != 'image/jpeg'){
-            await client.sendText(message.from, 'Sorry!, this media doesn\'t seem to be an image, send an image pls');
+            await client.sendText(message.from, 'Sorry!, this media doesn\'t seem to be an image');
         }
         else{
           const mediaData = await wa.decryptMedia(message);
@@ -33,7 +33,7 @@ module.exports = Sticker = async (client, message, arguments) => {
     }
 
     case('chat'):{
-      await client.sendText(message.from, 'No image found!\n Send #help to see all commands');
+      await client.sendText(message.from, 'No image found!\nUse #help to see all commands');
       break
     }
 

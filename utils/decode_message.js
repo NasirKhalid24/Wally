@@ -32,7 +32,7 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
     // Create REGEX for getting the command
     const REGEX_COMMAND = new RegExp(`${command_prefix}(\\w+)`, 'gi');
     // Create REGEX for getting the argument
-    const ARGS_COMMAND = new RegExp(`${argument_prefix}(\\w+)${value_prefix}?([a-zA-Z0-9_ ]+)`, 'gi');
+    const ARGS_COMMAND = new RegExp(`${argument_prefix}(\\w+)${value_prefix}?([a-zA-Z0-9_]+)`, 'gi');
 
     // Template for return value
     let return_val = {
@@ -44,22 +44,9 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
     if(body.trim() === ""){
         return return_val;
     }
-    
+
     // Check for Youtube links
     return_val = youtube_link_extractor(body, return_val);
-    if(return_val.command !== ""){
-        return return_val;
-    }
-
-    body = body.toLowerCase().trim();
-    
-    // If no body has no command  
-    if(!body.trim().includes(command_prefix)){
-        return return_val;
-    }
-
-    // Extract the command from message (if multiple only returns the first)
-    return_val.command = REGEX_COMMAND.exec(body)[1].toLowerCase();
 
     // Extract the arguments from message (can return multiple)
     let args_extracted = body.match(ARGS_COMMAND);
@@ -82,6 +69,21 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
         }
         return_val.arguments.push(r);
     }
+
+    // Return if already has command
+    if(return_val.command !== ""){
+        return return_val;
+    }
+
+    body = body.toLowerCase().trim();
+    
+    // If no body has no command  
+    if(!body.trim().includes(command_prefix)){
+        return return_val;
+    }
+
+    // Extract the command from message (if multiple only returns the first)
+    return_val.command = REGEX_COMMAND.exec(body)[1].toLowerCase();
 
     return return_val;
 }

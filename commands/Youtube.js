@@ -12,17 +12,35 @@ module.exports = Youtube = async (client, message, arguments) => {
     
     for (let index = 0; index < arguments.length; index++) {
         const obj_ = arguments[index];
+        console.log(obj_)
 
         if(obj_["argument"] === "url"){
             url = obj_["value"];
         }
+
+        if(obj_["argument"] === "audio"){
+            var audio_url = true
+        }
     }
 
     youtubedl.getInfo(url,function(err, info)  {
+
+        if(audio_url === true){
+            if(info._duration_raw <=900){
+            var audio_position = info.formats.findIndex(x => x.format_id == '140')
+            client.sendText(message.from, `Audio "${info.title}" found\n\n Downloading ⏳`);
+            client.sendFileFromUrl(message.from, info.formats[audio_position].url,`${info.title}.mp3`);
+            }
+            else{
+                client.sendText(message.from, `Cannot download the Audio \n\n Please ensure the audio is less than 15 minutes`);
+            }
+        }
+
         if(typeof info === 'undefined'){
             client.sendText(message.from, 'The link seems to be invalid...\nPlease ensure its not a private video');      
-            }
+            }    
         else{
+            
             if(info._duration_raw >= 300){
                 var position_240p = info.formats.findIndex(x => x.format_id == '18')
                 if(info._duration_raw <= 600){
@@ -38,9 +56,7 @@ module.exports = Youtube = async (client, message, arguments) => {
                 client.sendText(message.from, `Video "${info.title}" found\nDownloading ⏳`);
                 
                 //finding the position of the format array with id 18
-                var posi = info.formats.findIndex(x => x.format_id == '18')
-                console.log(info.formats[posi].url)
-                
+                var posi = info.formats.findIndex(x => x.format_id == '18')                
                 client.sendFileFromUrl(message.from, info.formats[posi].url);
              
             }

@@ -4,8 +4,6 @@ const wa = require('@open-wa/wa-automate');
 const youtubedl = require('youtube-dl');
 const {performance} = require('perf_hooks');
 
-
-
 module.exports = Youtube = async (client, message, arguments) => {
     
     let url = ""

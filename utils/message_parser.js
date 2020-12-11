@@ -2,6 +2,7 @@ const constants = require('../data/constants');
 const decode_message = require('./decode_message');
 const Sticker = require('../commands/Sticker');
 const Youtube = require('../commands/Youtube');
+const Help = require('../commands/Help');
 // const Test = require('../commands/Test');
 
 module.exports = message_parser = async(client, message) => {
@@ -43,6 +44,11 @@ module.exports = message_parser = async(client, message) => {
 
             case 'test':{
                 // Test(client, message, command_and_arguments.arguments);
+                break
+            }
+
+            case 'help':{
+                Help(client, message, command_and_arguments.arguments);
                 break
             }
         }

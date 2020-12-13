@@ -2,7 +2,9 @@
 
 const wa = require('@open-wa/wa-automate');
 const youtubedl = require('youtube-dl');
-const {performance} = require('perf_hooks');
+
+const dURL = require('../utils/dURL');
+const convertM4ADataUrlToMP3DataUrl = require('../utils/convertM4ADataUrlToMP3DataUrl');
 
 module.exports = Youtube = async (client, message, arguments) => {
     
@@ -29,8 +31,12 @@ module.exports = Youtube = async (client, message, arguments) => {
         else if(audio_url === true){
             if(info._duration_raw <=900){
             var audio_position = info.formats.findIndex(x => x.format_id == '140')
-            client.sendText(message.from, `Audio of "${info.title}" found\n\n Downloading ⏳`);
-            client.sendFileFromUrl(message.from, info.formats[audio_position].url,`${info.title}.mp3`);
+            var audio_url = info.formats[audio_position].url;
+            
+            convertM4ADataUrlToMP3DataUrl(dURL(audio_url));
+
+            // client.sendText(message.from, `Audio of "${info.title}" found\n\n Downloading ⏳`);
+            // client.sendFileFromUrl(message.from, audio_url,`${info.title}.mp3`);
             }
             else{
                 client.sendText(message.from, `Cannot download the Audio \n\n Please ensure the audio is less than 15 minutes`);

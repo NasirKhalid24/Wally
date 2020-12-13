@@ -1,4 +1,6 @@
-module.exports = async function getDUrl(url, optionsOverride){
+axios = require('axios');
+
+module.exports = getDUrl = async function (url){
     try {
         const res = await axios({
             method:"get",
@@ -7,7 +9,6 @@ module.exports = async function getDUrl(url, optionsOverride){
             'DNT':1,
             'Upgrade-Insecure-Requests':1
             },
-            ...optionsOverride,
             responseType: 'arraybuffer'
         });
         const dUrl = `data:${res.headers['content-type']};base64,${Buffer.from(res.data, 'binary').toString('base64')}`;

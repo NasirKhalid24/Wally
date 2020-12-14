@@ -73,6 +73,7 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
 
     }
     
+    // console.log("Step 2.5", body, return_val);
 
     // Return if already has command
     if(return_val.command !== ""){

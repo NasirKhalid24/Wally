@@ -2,7 +2,9 @@
 
 const wa = require('@open-wa/wa-automate');
 const youtubedl = require('youtube-dl');
-const {performance} = require('perf_hooks');
+
+const dURL = require('../utils/dURL');
+const sendConvertedMP3 = require('../utils/sendConvertedMP3');
 
 module.exports = Youtube = async (client, message, arguments) => {
     
@@ -21,16 +23,17 @@ module.exports = Youtube = async (client, message, arguments) => {
         }
     }
 
-    youtubedl.getInfo(url,function(err, info)  {
+    youtubedl.getInfo(url, function(err, info)  {
 
         if(typeof info === 'undefined'){
             client.sendText(message.from, 'The link seems to be invalid...\nPlease ensure the video is not private');      
         }   
         else if(audio_url === true){
             if(info._duration_raw <=900){
-            var audio_position = info.formats.findIndex(x => x.format_id == '140')
-            client.sendText(message.from, `Audio of "${info.title}" found\n\n Downloading ⏳`);
-            client.sendFileFromUrl(message.from, info.formats[audio_position].url,`${info.title}.mp3`);
+                var audio_position = info.formats.findIndex(x => x.format_id == '140')
+                client.sendText(message.from, `Audio of "${info.title}" found\n\n Downloading ⏳`);
+                
+                sendConvertedMP3(info.formats[audio_position].url, client, message.from, `${info.title}.mp3`)
             }
             else{
                 client.sendText(message.from, `Cannot download the Audio \n\n Please ensure the audio is less than 15 minutes`);

@@ -28,6 +28,9 @@ module.exports = convertM4AUrlToMP3DataUrl = async function ( url ) {
             .on('end', function(stdout, stderr) {
                 resolve(true)
             })
+            // .on('stderr', function(stderrLine) {
+            //     console.log('Stderr output: ' + stderrLine);
+            //   })
             .save(tempFile);
     });
 

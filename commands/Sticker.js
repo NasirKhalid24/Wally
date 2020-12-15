@@ -1,6 +1,7 @@
 // Sticker command - Converts an image to sticker
 
 const wa = require('@open-wa/wa-automate');
+const messages = require('../data/messages')
 
 module.exports = Sticker = async (client, message, arguments) => {
 
@@ -11,7 +12,7 @@ module.exports = Sticker = async (client, message, arguments) => {
     case 'location':
     case 'vcard':
       {
-        await client.sendText(message.from, 'Sorry! I couldn\'t find a command in this message. \n Type #help to see all commands');
+        await client.sendText(message.from, messages.STICKER_NON_IMAGE_MESSAGE);
         break
       }
 
@@ -19,7 +20,7 @@ module.exports = Sticker = async (client, message, arguments) => {
         var document_type = message.mimetype
 
         if(document_type != 'image/png' && document_type != 'image/jpg' && document_type != 'image/jpeg'){
-            await client.sendText(message.from, 'Sorry!, this media doesn\'t seem to be an image');
+            await client.sendText(message.from, messages.STICKER_INVALID_IMAGE);
         }
         else{
           const mediaData = await wa.decryptMedia(message);

@@ -26,9 +26,9 @@ module.exports = Youtube = async (client, message, arguments) => {
 
     // Get Info
     const info = await getVideoInfo(url);
-
-    // If video private, undefined or url does not exist
-    if(typeof info === 'undefined'){
+    
+    // If video private, undefined or url does not exist then info will be empty
+    if(Object.keys(info).length === 0){
         await client.sendText(message.from, 'The link seems to be invalid...\nPlease ensure the video is not private');      
     }   
 

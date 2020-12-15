@@ -34,19 +34,7 @@ module.exports = Sticker = async (client, message, arguments) => {
     }
 
     case('chat'):{
-      await client.sendText(message.from, 
-        `Hello! 👋
-
-        I am a bot used to simplify tasks!
-        
-        To find out more about how I can help you, type #help
-        
-        To contact us, please drop us an email: whatsapphelper@protonmail.com
-        
-        By using this service you agree to the terms set out by the application. To view our terms and conditions, type #tc
-        
-        Enjoy! 😁`
-      );
+      await client.sendText(message.from, messages.STICKER_NON_IMAGE_MESSAGE);
       break
     }
 

@@ -1,6 +1,7 @@
 const wa = require('@open-wa/wa-automate');
 
 const message_parser = require('./utils/message_parser');
+const messages = require('./data/messages');
 
 async function launch(){
     try{
@@ -46,12 +47,12 @@ function start(client) {
 
         // Handling incoming Whatsapp calls
         client.onIncomingCall(async call=>{
-            await client.sendText(call.peerJid, 'Sorry I cannot accept calls 📵');
+            await client.sendText(call.peerJid, messages.ON_CALL );
         });
 
         // Handle being added to group
         client.onAddedToGroup(({ groupMetadata: { id }, contact: { name } }) => {
-            client.sendText(id, 'Sorry I cannot be added to groups (as of now 😉)').then(() => client.leaveGroup(id))
+            client.sendText(id, messages.ON_GROUP).then(() => client.leaveGroup(id))
         })
         
     }catch(error){

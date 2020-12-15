@@ -1,10 +1,10 @@
 // Help command - Send help information
 
 const wa = require('@open-wa/wa-automate');
-const constants = require('../data/constants');
+const messages = require('../data/messages');
 
 module.exports = Sticker = async (client, message, arguments) => {
 
-    await client.sendText(message.from, constants.HELP_MESSAGE);
+    await client.sendText(message.from, messages.HELP_MESSAGE);
     
 }

@@ -9,12 +9,12 @@ module.exports = getDUrl = async function (url){
             'DNT':1,
             'Upgrade-Insecure-Requests':1
             },
-            onDownloadProgress: function (progressEvent) {
-                console.log("Download = ", progressEvent.loaded, " / ", progressEvent.total);
-            },
-            onUploadProgress: function (progressEvent) {
-                console.log("Upload = ", progressEvent.loaded, " / ", progressEvent.total);
-            },
+            // onDownloadProgress: function (progressEvent) {
+            //     console.log("Download = ", progressEvent.loaded, " / ", progressEvent.total);
+            // },
+            // onUploadProgress: function (progressEvent) {
+            //     console.log("Upload = ", progressEvent.loaded, " / ", progressEvent.total);
+            // },
             responseType: 'arraybuffer'
         });
         const dUrl = `data:${res.headers['content-type']};base64,${Buffer.from(res.data, 'binary').toString('base64')}`;

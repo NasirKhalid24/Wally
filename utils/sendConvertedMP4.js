@@ -1,4 +1,5 @@
 const dURL = require("./dURL");
+const messages = require('../data/messages');
 
 module.exports = sendConvertedMP4 = async function ( url , client, from, name)  {
 
@@ -6,7 +7,7 @@ module.exports = sendConvertedMP4 = async function ( url , client, from, name)  
     let timeout_ms = timeout_min * 60000;
 
     const timer = new Promise((resolve, reject) => {
-        setTimeout(resolve, timeout_ms, 'Timeout while sending video - ensure video is within size limits of Whatsapp chat');
+        setTimeout(resolve, timeout_ms, messages.TIMEOUT_SENDING('video'));
     });
 
     const download = new Promise((resolve, reject) => {
@@ -17,7 +18,7 @@ module.exports = sendConvertedMP4 = async function ( url , client, from, name)  
         return value;
     });
 
-    if(d == 'Timeout while sending video - ensure video is within size limits of Whatsapp chat'){
+    if(d == messages.TIMEOUT_SENDING('video')){
         client.sendText(from, d);
     }else{
         await client.sendFile(from, d, name);

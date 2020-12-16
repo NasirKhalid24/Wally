@@ -37,6 +37,9 @@ const queue = new PQueue({
 
 const proc = async (client, message) => {
     await message_parser(client, message);
+    
+    // await client.clearChat(message.from)
+    
     return true;
 }
 

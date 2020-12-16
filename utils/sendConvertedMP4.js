@@ -1,5 +1,6 @@
 const dURL = require("./dURL");
 const messages = require('../data/messages');
+const constants = require('../data/constants');
 
 module.exports = sendConvertedMP4 = async function ( url , client, from, name)  {
 
@@ -19,11 +20,28 @@ module.exports = sendConvertedMP4 = async function ( url , client, from, name)  
     });
 
     if(d == messages.TIMEOUT_SENDING('video')){
-        console.log('video send failed')
         await client.sendText(from, d);
     }else{
-        console.log('video send successly')
-        await client.sendFile(from, d, name);
+
+        const tree = new Promise((resolve, reject) => {
+            resolve(client.sendFile(from, d, name));
+        });
+
+        const timed = new Promise((resolve, reject) => {
+            setTimeout(resolve, timeout_ms, messages.TIMEOUT_SENDING('video'));
+        });
+
+        let f = await Promise.race([timed, tree]).then((value) => {
+            return value;
+        });
+
+        if(f != true){
+            await client.sendText(from, f);
+        }
+        else{
+            console.log('Video functions used today: ', ++constants.video_counter)
+        }
+       
     }
     
 }

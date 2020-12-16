@@ -54,7 +54,9 @@ WEH does not encourage the use of the Bot that may infringe any rights held by a
 
 You agree to indemnify and hold WEH harmless from any and all claims, demands, losses, liabilities, and expenses (including attorneys’ fees) arising out of or in connection with your use of the Bot.
 
-You agree to comply with all applicable laws when using the Bit, and you may only use the Bot for lawful purposes.
+You agree to comply with all applicable laws when using the Bot, and you may only use the Bot for lawful purposes.
+
+WEH does not store any data sent to the bot on its local servers and all communication between the bot and you (the "User") is not monitored or tracked by WEH
 
 THE BOT IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
 

@@ -28,7 +28,7 @@ async function launch(){
     }
 }
 
-function start(client) {
+async function start(client) {
 
     try{
         // Handling any changes to the state of the bot 
@@ -40,9 +40,9 @@ function start(client) {
         });
 
         // Handling incoming messages
-        client.onMessage(message => {
+        client.onMessage(async message => {
             // Sent to message parser to handle user interactions
-            message_parser(client, message);
+            await message_parser(client, message);
         });
 
         // Handling incoming Whatsapp calls
@@ -52,7 +52,7 @@ function start(client) {
 
         // Handle being added to group
         client.onAddedToGroup(({ groupMetadata: { id }, contact: { name } }) => {
-            client.sendText(id, messages.ON_GROUP).then(() => client.leaveGroup(id))
+             client.sendText(id, messages.ON_GROUP).then(() => client.leaveGroup(id))
         })
         
     }catch(error){

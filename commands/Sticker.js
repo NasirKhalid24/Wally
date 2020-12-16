@@ -1,7 +1,9 @@
 // Sticker command - Converts an image to sticker
 
 const wa = require('@open-wa/wa-automate');
-const messages = require('../data/messages')
+const messages = require('../data/messages');
+const constants = require('../data/constants');
+
 
 module.exports = Sticker = async (client, message, arguments) => {
 
@@ -29,6 +31,7 @@ module.exports = Sticker = async (client, message, arguments) => {
           )}`;
 
           await client.sendImageAsSticker(message.from, imageBase64);
+          console.log('Sticker Functions used today', ++constants.sticker_counter)
         }
         break
     }
@@ -45,6 +48,7 @@ module.exports = Sticker = async (client, message, arguments) => {
         )}`;
 
         await client.sendImageAsSticker(message.from, imageBase64);
+        console.log('Sticker Functions used today', ++constants.sticker_counter)
         break
     }
   }

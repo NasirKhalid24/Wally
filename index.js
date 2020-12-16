@@ -3,6 +3,8 @@ const wa = require('@open-wa/wa-automate');
 const message_parser = require('./utils/message_parser');
 const messages = require('./data/messages');
 
+const { default: PQueue } = require("p-queue");
+
 async function launch(){
     try{
         const client = await wa.create({
@@ -10,13 +12,13 @@ async function launch(){
             restartOnCrash: start,
 
             //log all browser console output
-            logConsole: true,
+            logConsole: false,
 
             // Use Chrome (to send videos)
             useChrome: true,
 
             //or just browser errors
-            logConsoleErrors: true,
+            logConsoleErrors: false,
 
             //kill the process if the browser crashes/is closed manually
             killProcessOnBrowserClose: true
@@ -27,6 +29,18 @@ async function launch(){
         console.log(error)
     }
 }
+
+const queue = new PQueue({
+  concurrency: 4,
+  autoStart:false
+   });
+
+const proc = async (client, message) => {
+    await message_parser(client, message);
+    return true;
+}
+
+const processMessage = (client, message) => queue.add(()=>proc(client, message));
 
 async function start(client) {
 
@@ -39,10 +53,14 @@ async function start(client) {
             if(state==='UNPAIRED') console.log('Got logged out! Restart server and scan QR code!')
         });
 
+        const unreadMessages = await client.getAllUnreadMessages();
+        unreadMessages.forEach( m => processMessage(client, m))
+
         // Handling incoming messages
-        client.onMessage(async message => {
+        client.onMessage(message => {
             // Sent to message parser to handle user interactions
-            await message_parser(client, message);
+            // await message_parser(client, message);
+            processMessage(client, message)
         });
 
         // Handling incoming Whatsapp calls
@@ -52,9 +70,11 @@ async function start(client) {
 
         // Handle being added to group
         client.onAddedToGroup(({ groupMetadata: { id }, contact: { name } }) => {
-             client.sendText(id, messages.ON_GROUP).then(() => client.leaveGroup(id))
+            client.sendText(id, messages.ON_GROUP).then(() => client.leaveGroup(id))
         })
         
+        queue.start();
+
     }catch(error){
         client.kill();
         console.log("ERROR = ", error)

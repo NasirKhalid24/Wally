@@ -19,8 +19,10 @@ module.exports = sendConvertedMP4 = async function ( url , client, from, name)  
     });
 
     if(d == messages.TIMEOUT_SENDING('video')){
-        client.sendText(from, d);
+        console.log('video send failed')
+        await client.sendText(from, d);
     }else{
+        console.log('video send successly')
         await client.sendFile(from, d, name);
     }
     

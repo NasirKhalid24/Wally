@@ -12,7 +12,7 @@ module.exports = Youtube = async (client, message, arguments) => {
     let url = "";
     let audio_url = false;
     let max_audio_duration = 600; // 10 mins
-    let max_video_duration = 900; // 15 mins
+    let max_video_duration = 600; // 10 mins
 
     for (let index = 0; index < arguments.length; index++) {
         const obj_ = arguments[index];

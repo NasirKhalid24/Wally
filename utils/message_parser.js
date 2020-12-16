@@ -29,17 +29,17 @@ module.exports = message_parser = async(client, message) => {
         switch(command_and_arguments.command){
 
             case '':{
-                Sticker(client, message, command_and_arguments.arguments);
+                await Sticker(client, message, command_and_arguments.arguments);
                 break
             }
 
             case 'sticker':{
-                Sticker(client, message, command_and_arguments.arguments);
+                await Sticker(client, message, command_and_arguments.arguments);
                 break
             }
 
             case 'youtube':{
-                Youtube(client, message, command_and_arguments.arguments);
+                await Youtube(client, message, command_and_arguments.arguments);
                 break
             }
 
@@ -49,12 +49,12 @@ module.exports = message_parser = async(client, message) => {
             }
 
             case 'help':{
-                Help(client, message, command_and_arguments.arguments);
+                await Help(client, message, command_and_arguments.arguments);
                 break
             }
 
             case 'tc':{
-                Terms_conditions(client, message, command_and_arguments);
+                await Terms_conditions(client, message, command_and_arguments);
             }
         }
 

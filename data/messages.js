@@ -2,11 +2,9 @@
 
 exports.STICKER_NON_IMAGE_MESSAGE = STICKER_NON_IMAGE_MESSAGE = `Hello! 👋
 
-I am a bot used to simplify tasks!
+To learn about my commands, message me "*#help*"
 
-To find out more about how I can help you, type #help
-
-To contact us, please drop us an email: whatsapphelper@protonmail.com
+Contact us at: whatsapphelper@protonmail.com
 
 By using this service you agree to the terms set out by the application. To view our terms and conditions, type #tc
 
@@ -22,13 +20,21 @@ exports.STICKER_INVALID_IMAGE = STICKER_INVALID_IMAGE = 'Sorry! This media doesn
 exports.HELP_MESSAGE = HELP_MESSAGE = `
 *Whatsapp Helper 🤖*
 
-A bot to simplify tasks. Here are some commands to try out:
+Here are some commands to try out:
 
 *1.* Send me an image ➡️ I'll send you a sticker
 
+
 *2.* Send me a youtube link ➡️ I'll download you the video
 
+_demo: https://wa.link/3q0278_ 
+
+
 *3.* Send me a youtube link and write " -audio " ➡️ I'll send you the audio
+
+_demo: https://wa.link/zd4n5i_
+
+
 
 
 _Coming soon ⌛ - Facebook & Twitter support_

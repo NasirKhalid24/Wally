@@ -40,8 +40,20 @@ module.exports = Youtube = async (client, message, arguments) => {
         if(info._duration_raw <= max_audio_duration){
 
             var audio_position = info.formats.findIndex(x => x.format_id == '140')
-            await client.sendText(message.from, messages.YOUTUBE_FOUND('Audio', info.title));
-            await sendConvertedMP3(info.formats[audio_position].url, client, message.from, `${info.title}.mp3`)
+            
+            if(info.formats[audio_position].format.includes("DASH")){
+
+                await client.sendText(message.from, messages.YOUTUBE_FOUND('Audio', info.title));
+                await sendConvertedMP3(info.formats[audio_position].fragment_base_url, client, message.from, `${info.title}.mp3`)
+
+                
+            }else{
+
+                await client.sendText(message.from, messages.YOUTUBE_FOUND('Audio', info.title));
+                await sendConvertedMP3(info.formats[audio_position].url, client, message.from, `${info.title}.mp3`)
+
+            }
+            
 
         }
         else{

@@ -12,6 +12,8 @@ Enjoy! 😁`
 
 exports.STICKER_INVALID_IMAGE = STICKER_INVALID_IMAGE = 'Sorry! This media doesn\'t seem to be an image'
 
+exports.VIDEO_TO_STICKER_GIF_LENTGH = VIDEO_TO_STICKER_GIF_LENTGH = 'Sorry! The Video/GIF must be less than 10 seconds.'
+
 
 
 
@@ -25,14 +27,20 @@ Here are some commands to try out:
 *1.* Send me an image ➡️ I'll send you a sticker
 
 
-*2.* Send me a youtube link ➡️ I'll download you the video
-
-_demo: https://wa.link/3q0278_ 
+*2.* Send me a video ➡️ I'll send you an animated sticker
 
 
-*3.* Send me a youtube link and write " -audio " ➡️ I'll send you the audio
+*3.* Send a video and write " gif " ➡️ I'll send you a gif of the video
 
-_demo: https://wa.link/zd4n5i_
+
+*4.* Send me a youtube link ➡️ I'll download you the video
+
+demo: https://wa.link/3q0278 
+
+
+*5.* Send me a youtube link and write " -audio " ➡️ I'll send you the audio
+
+demo: https://wa.link/zd4n5i
 
 
 

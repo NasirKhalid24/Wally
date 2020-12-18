@@ -8,8 +8,38 @@ const constants = require('../data/constants');
 module.exports = Sticker = async (client, message, arguments) => {
 
   switch(message.type){
-
     case 'video':
+      {
+        var vid_to_gif_duration = 10;
+        var gif_log = 0;
+        var mp4_sticker_log = 0;
+   
+        if (message.duration <= vid_to_gif_duration){
+          if(typeof message.caption !== 'undefined' && message.caption.toLowerCase().includes('gif')){
+            const mediaData = await wa.decryptMedia(message);
+            const gifbase64 = `data:${message.mimetype};base64,${mediaData.toString(
+              'base64'
+            )}`;
+            await client.sendVideoAsGif(message.from,gifbase64);  
+            console.log('Number of video to gif used', ++gif_log);  
+            break    
+          }
+          else{
+          const mediaData = await wa.decryptMedia(message);
+          const videobase64 = `data:${message.mimetype};base64,${mediaData.toString(
+            'base64'
+          )}`;
+          await client.sendMp4AsSticker(message.from,videobase64);   
+          console.log('Number of video to sticker used', ++mp4_sticker_log);  
+ 
+          break  
+          }  
+        }
+        else{
+          await client.sendText(message.from, messages.VIDEO_TO_STICKER_GIF_LENTGH);
+          break
+        }
+      }
     case 'audio':
     case 'location':
     case 'vcard':

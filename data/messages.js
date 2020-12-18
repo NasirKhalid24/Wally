@@ -12,7 +12,7 @@ Enjoy! 😁`
 
 exports.STICKER_INVALID_IMAGE = STICKER_INVALID_IMAGE = 'Sorry! This media doesn\'t seem to be an image'
 
-exports.VIDEO_TO_STICKER_GIF_LENTGH = VIDEO_TO_STICKER_GIF_LENTGH = 'Sorry! The Video/GIF must be less than 10 seconds.'
+exports.VIDEO_TO_STICKER_GIF_LENTGH = VIDEO_TO_STICKER_GIF_LENTGH = 'Sorry! The Video/GIF must be less than 8 seconds.'
 
 
 

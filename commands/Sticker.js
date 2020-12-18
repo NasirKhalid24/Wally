@@ -11,8 +11,6 @@ module.exports = Sticker = async (client, message, arguments) => {
     case 'video':
       {
         var vid_to_gif_duration = 10;
-        var gif_log = 0;
-        var mp4_sticker_log = 0;
    
         if (message.duration <= vid_to_gif_duration){
           if(typeof message.caption !== 'undefined' && message.caption.toLowerCase().includes('gif')){
@@ -21,7 +19,7 @@ module.exports = Sticker = async (client, message, arguments) => {
               'base64'
             )}`;
             await client.sendVideoAsGif(message.from,gifbase64);  
-            console.log('Number of video to gif used', ++gif_log);  
+            console.log('Number of video to gif used', ++constants.gif_log);  
             break    
           }
           else{
@@ -30,7 +28,7 @@ module.exports = Sticker = async (client, message, arguments) => {
             'base64'
           )}`;
           await client.sendMp4AsSticker(message.from,videobase64);   
-          console.log('Number of video to sticker used', ++mp4_sticker_log);  
+          console.log('Number of video to sticker used', ++constants.mp4_sticker_log);  
  
           break  
           }  

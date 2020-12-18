@@ -56,8 +56,8 @@ async function start(client) {
             if(state==='UNPAIRED') console.log('Got logged out! Restart server and scan QR code!')
         });
 
-        // const unreadMessages = await client.getAllUnreadMessages();
-        // unreadMessages.forEach( m => processMessage(client, m))
+        const unreadMessages = await client.getAllUnreadMessages();
+        unreadMessages.forEach( m => processMessage(client, m))
 
         // Handling incoming messages
         client.onMessage(message => {

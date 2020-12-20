@@ -92,3 +92,11 @@ exports.TIMEOUT_SENDING = (type) => { return `Timeout while sending ${type} - en
 
 exports.ON_CALL = ON_CALL = 'Sorry I cannot accept calls 📵'
 exports.ON_GROUP = ON_GROUP = 'Sorry I cannot be added to groups (for now 😉)'
+
+
+//Twitter
+
+exports.INVALID_TWEET = INVALID_TWEET = 'Sorry! This Tweet seems to be invalid! \n\n Please ensure the tweet is not private and has a video'
+
+//Instagram
+exports.INVALID_INSTA = this.INVALID_INSTA = 'Sorry! This post seems to be invalid! \n\nPlease ensure the vidoe isn\'t private'

@@ -4,6 +4,8 @@ const Sticker = require('../commands/Sticker');
 const Youtube = require('../commands/Youtube');
 const Help = require('../commands/Help');
 const Terms_conditions = require('../commands/Terms_conditions');
+const Twitter = require('../commands/Twitter');
+
 // const Test = require('../commands/Test');
 
 module.exports = message_parser = async(client, message) => {
@@ -55,7 +57,15 @@ module.exports = message_parser = async(client, message) => {
 
             case 'tc':{
                 await Terms_conditions(client, message, command_and_arguments);
+                break
             }
+
+            case 'twitter':{
+                await Twitter(client, message, command_and_arguments.arguments);
+                break
+            }
+
+          
         }
 
     } catch(err){

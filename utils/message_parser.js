@@ -5,7 +5,8 @@ const Youtube = require('../commands/Youtube');
 const Help = require('../commands/Help');
 const Terms_conditions = require('../commands/Terms_conditions');
 const Twitter = require('../commands/Twitter');
-
+const Instagram = require('../commands/Instagram');
+const Facebook = require('../commands/Facebook');
 // const Test = require('../commands/Test');
 
 module.exports = message_parser = async(client, message) => {
@@ -65,7 +66,14 @@ module.exports = message_parser = async(client, message) => {
                 break
             }
 
-          
+            case'instagram':{
+                await Instagram(client,message,command_and_arguments.arguments);
+                break
+            }
+
+            case'facebook':{
+                await Facebook(client,message,command_and_arguments.arguments);
+            }
         }
 
     } catch(err){

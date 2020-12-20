@@ -25,10 +25,10 @@
 //     "value": "Value of the argument - NULL if there is none"
 // }
 
-const youtube_link_extractor = require('./youtube_link_extractor');
-const twitter_link_extractor = require('./twitter_link_extractor');
-const instagram_link_extractor = require('./instagram_link_extractor');
-const facebook_link_extractor = require('./facebook_link_extractor');
+const youtube_link_extractor = require('../link_extractors/youtube_link_extractor');
+const twitter_link_extractor = require('../link_extractors/twitter_link_extractor');
+const instagram_link_extractor = require('../link_extractors/instagram_link_extractor');
+const facebook_link_extractor = require('../link_extractors/facebook_link_extractor');
 
 module.exports = decode_message = (body, command_prefix, argument_prefix, value_prefix) => {
     

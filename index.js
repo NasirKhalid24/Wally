@@ -1,6 +1,6 @@
 const wa = require('@open-wa/wa-automate');
 
-const message_parser = require('./utils/message_parser');
+const message_parser = require('./utils/message_readers/message_parser');
 const messages = require('./data/messages');
 
 const { default: PQueue } = require("p-queue");

@@ -1,9 +1,9 @@
 // Youtube command - Downloads youtube video
 const wa = require('@open-wa/wa-automate');
 
-const sendConvertedMP3 = require('../utils/sendConvertedMP3');
-const getVideoInfo = require('../utils/getVideoInfo');
-const sendConvertedMP4 = require('../utils/sendConvertedMP4');
+const sendConvertedMP3 = require('../utils/file_senders/sendConvertedMP3');
+const getVideoInfo = require('../utils/data_downloaders/getVideoInfo');
+const sendConvertedMP4 = require('../utils/file_senders/sendConvertedMP4');
 const messages = require('../data/messages');
 
 
@@ -43,13 +43,13 @@ module.exports = Youtube = async (client, message, arguments) => {
             
             if(info.formats[audio_position].format.includes("DASH")){
 
-                await client.sendText(message.from, messages.YOUTUBE_FOUND('Audio', info.title));
+                await client.sendText(message.from, messages.INFO_FOUND('Audio', info.title));
                 await sendConvertedMP3(info.formats[audio_position].fragment_base_url, client, message.from, `${info.title}.mp3`)
 
                 
             }else{
 
-                await client.sendText(message.from, messages.YOUTUBE_FOUND('Audio', info.title));
+                await client.sendText(message.from, messages.INFO_FOUND('Audio', info.title));
                 await sendConvertedMP3(info.formats[audio_position].url, client, message.from, `${info.title}.mp3`)
 
             }
@@ -69,7 +69,7 @@ module.exports = Youtube = async (client, message, arguments) => {
         if(info._duration_raw <= max_video_duration){
 
             var position_240p = info.formats.findIndex(x => x.format_id == '18')
-            await client.sendText(message.from, messages.YOUTUBE_FOUND('Video', info.title));
+            await client.sendText(message.from, messages.INFO_FOUND('Video', info.title));
             await sendConvertedMP4(info.formats[position_240p].url, client, message.from,  `${info.title}.mp4`);
             
         }

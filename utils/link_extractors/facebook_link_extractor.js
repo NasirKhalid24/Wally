@@ -2,9 +2,9 @@
 
 module.exports = instagram_link_extractor = (message_text, return_val) => {
 
-    const INSTAGRAM_REGEX = new RegExp("(^http(?:s?):\/\/(?:www\.|web\.|m\.)?facebook\.com\/([A-z0-9\.]+).*)", "gm");
+    const FACEBOOK_REGEX = new RegExp("(?:https?:\\/\\/)?(?:www\\.)?(?:facebook|fb|m\\.facebook)\\.(?:com|me|watch)\\/(?:(?:\\w)*#!\\/)?(?:pages\\/)?(?:[\\w\\-]*\\/)*([\\w\\-\\.]+)(?:\\/)?", "gmi");
 
-    let links = message_text.match(INSTAGRAM_REGEX)
+    let links = message_text.match(FACEBOOK_REGEX)
     if(Array.isArray(links)){
         if(links.length === 1){
             return_val.command = "facebook"

@@ -10,7 +10,7 @@ By using this service you agree to the terms set out by the application. To view
 
 Enjoy! 😁`
 
-exports.STICKER_INVALID_IMAGE = STICKER_INVALID_IMAGE = 'Sorry! This media doesn\'t seem to be an image'
+exports.STICKER_INVALID_IMAGE = STICKER_INVALID_IMAGE = 'Sorry! This media doesn\'t seem to be an image/video'
 
 exports.VIDEO_TO_STICKER_GIF_LENTGH = VIDEO_TO_STICKER_GIF_LENTGH = 'Sorry! The Video/GIF must be less than 8 seconds.'
 
@@ -22,9 +22,9 @@ exports.VIDEO_TO_STICKER_GIF_LENTGH = VIDEO_TO_STICKER_GIF_LENTGH = 'Sorry! The 
 exports.HELP_MESSAGE = HELP_MESSAGE = `
 *Whatsapp Helper 🤖*
 
-Here are some commands to try out:
+Here is what I can do:
 
-*1.* Send me an image ➡️ I'll send you a sticker
+*1.* Send me an photo ➡️ I'll send you a sticker
 
 
 *2.* Send me a video ➡️ I'll send you an animated sticker
@@ -43,9 +43,25 @@ demo: https://wa.link/3q0278
 demo: https://wa.link/zd4n5i
 
 
+*6.* Send me a twitter link ➡️ I'll download you the video
+
+demo: https://wa.link/qex8wo
 
 
-_Coming soon ⌛ - Facebook & Twitter support_
+*7.* Send me a twitter link and write " -audio " ➡️ I'll send you the audio
+
+demo: https://wa.link/9ka95f
+
+
+*7.* Send me an instagram link ➡️ I'll download you the video
+
+demo: https://wa.link/75e2cv
+
+
+*8.* Send me an instagram link and write " -audio " ➡️ I'll send you the audio
+
+demo: https://wa.link/hx7m9s
+
 
 To learn more or send feature requests, contact: whatsapphelper@protonmail.com
 `
@@ -75,17 +91,23 @@ Please contact whatsapphelper@protonmail.com for further information or notices 
 
 
 
-// Youtube
-
-exports.YOUTUBE_PRIVATE = YOUTUBE_PRIVATE = 'The link seems to be invalid...\nPlease ensure the video is not private'
-exports.YOUTUBE_FOUND = (type, title) => {return `${type} of "${title}" found\nDownloading ⏳`}
+// General Messages
+exports.INFO_FOUND  = (type, title) => {return `${type} of "${title}" found\nDownloading ⏳`}
 exports.MAX_LIMIT = (type, limit) =>  { return `This ${type} file is too large to send through Whatsapp \n\nPlease ensure the ${type} is less than ${limit} minutes or less` }
 
 
 
 
+// Youtube
+
+exports.YOUTUBE_PRIVATE = YOUTUBE_PRIVATE = 'Sorry! This video seems to be invalid! 🔒 \n\nPlease ensure the video is not private'
+
+
+
 // Send MP3/MP4
 exports.TIMEOUT_SENDING = (type) => { return `Timeout while sending ${type} - ensure ${type} is within size limits of Whatsapp chat` }
+
+
 
 
 // Config
@@ -94,9 +116,14 @@ exports.ON_CALL = ON_CALL = 'Sorry I cannot accept calls 📵'
 exports.ON_GROUP = ON_GROUP = 'Sorry I cannot be added to groups (for now 😉)'
 
 
+
+
 //Twitter
 
-exports.INVALID_TWEET = INVALID_TWEET = 'Sorry! This Tweet seems to be invalid! \n\n Please ensure the tweet is not private and has a video'
+exports.INVALID_TWEET = INVALID_TWEET = 'Sorry! This Tweet seems to be invalid! 🔒 \n\nPlease ensure the account is not private and the link contains a video'
+
+
+
 
 //Instagram
-exports.INVALID_INSTA = this.INVALID_INSTA = 'Sorry! This post seems to be invalid! \n\nPlease ensure the vidoe isn\'t private'
+exports.INVALID_INSTA = this.INVALID_INSTA = 'Sorry! This post seems to be invalid! 🔒 \n\nPlease ensure the account is not private and the link contains a video'

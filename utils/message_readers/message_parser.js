@@ -1,12 +1,12 @@
-const constants = require('../data/constants');
+const constants = require('../../data/constants');
 const decode_message = require('./decode_message');
-const Sticker = require('../commands/Sticker');
-const Youtube = require('../commands/Youtube');
-const Help = require('../commands/Help');
-const Terms_conditions = require('../commands/Terms_conditions');
-const Twitter = require('../commands/Twitter');
-const Instagram = require('../commands/Instagram');
-const Facebook = require('../commands/Facebook');
+const Sticker = require('../../commands/Sticker');
+const Youtube = require('../../commands/Youtube');
+const Help = require('../../commands/Help');
+const Terms_conditions = require('../../commands/Terms_conditions');
+const Twitter = require('../../commands/Twitter');
+const Instagram = require('../../commands/Instagram');
+// const Facebook = require('../../commands/Facebook');
 // const Test = require('../commands/Test');
 
 module.exports = message_parser = async(client, message) => {
@@ -46,10 +46,10 @@ module.exports = message_parser = async(client, message) => {
                 break
             }
 
-            case 'test':{
-                // Test(client, message, command_and_arguments.arguments);
-                break
-            }
+            // case 'test':{
+            //     Test(client, message, command_and_arguments.arguments);
+            //     break
+            // }
 
             case 'help':{
                 await Help(client, message, command_and_arguments.arguments);
@@ -71,9 +71,9 @@ module.exports = message_parser = async(client, message) => {
                 break
             }
 
-            case'facebook':{
-                await Facebook(client,message,command_and_arguments.arguments);
-            }
+            // case'facebook':{
+            //     await Facebook(client,message,command_and_arguments.arguments);
+            // }
         }
 
     } catch(err){

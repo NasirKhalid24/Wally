@@ -1,6 +1,6 @@
-const dURL = require("./dURL");
-const messages = require('../data/messages');
-const constants = require('../data/constants');
+const dURL = require("../data_downloaders/dURL");
+const messages = require('../../data/messages');
+const constants = require('../../data/constants');
 
 module.exports = sendConvertedMP4 = async function ( url , client, from, name)  {
 

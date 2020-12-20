@@ -1,7 +1,7 @@
 const wa = require('@open-wa/wa-automate');
 
 ffmpeg = require('fluent-ffmpeg');
-dURL = require('./dURL');
+dURL = require('../data_downloaders/dURL');
 Crypto = require('crypto');
 datauri = require('datauri');
 fs = require('fs');
@@ -15,7 +15,8 @@ module.exports = convertM4AUrlToMP3DataUrl = async function ( url ) {
     const tempFile = path.join(os.tmpdir(), `processing.${Crypto.randomBytes(6).readUIntLE(0, 6).toString(36)}.mp3`);
 
     var stream = new(require('stream').Readable)();
-    stream.push(Buffer.from(data.replace('data:audio/mp4;base64,',''), 'base64'));
+    // stream.push(Buffer.from(data.replace('data:audio/mp4;base64,',''), 'base64'));
+    stream.push(Buffer.from(data.slice(21), 'base64'));
     stream.push(null);
 
     await new Promise((resolve, reject) => {

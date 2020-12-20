@@ -1,6 +1,6 @@
-const convertM4AUrlToMP3DataUrl = require('../utils/convertM4AUrlToMP3DataUrl');
-const messages = require('../data/messages');
-const constants = require('../data/constants');
+const convertM4AUrlToMP3DataUrl = require('../ffmpeg_converters/convertM4AUrlToMP3DataUrl');
+const messages = require('../../data/messages');
+const constants = require('../../data/constants');
 
 module.exports = sendConvertedMP3 = async function ( url , client, from, name)  {
 

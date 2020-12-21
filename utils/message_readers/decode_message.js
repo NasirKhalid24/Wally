@@ -55,9 +55,9 @@ module.exports = decode_message = (body, command_prefix, argument_prefix, value_
 
     return_val = twitter_link_extractor(body,return_val);
 
-    return_val = instagram_link_extractor(body,return_val);
+    // return_val = instagram_link_extractor(body,return_val);
 
-    return_val = facebook_link_extractor(body,return_val);
+    // return_val = facebook_link_extractor(body,return_val);
 
     // Extract the arguments from message (can return multiple)
     let args_extracted = body.match(ARGS_COMMAND);

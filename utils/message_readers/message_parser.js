@@ -66,10 +66,10 @@ module.exports = message_parser = async(client, message) => {
                 break
             }
 
-            case'instagram':{
-                await Instagram(client,message,command_and_arguments.arguments);
-                break
-            }
+            // case'instagram':{
+            //     await Instagram(client,message,command_and_arguments.arguments);
+            //     break
+            // }
 
             // case'facebook':{
             //     await Facebook(client,message,command_and_arguments.arguments);

@@ -45,22 +45,13 @@ demo: https://wa.link/zd4n5i
 
 *6.* Send me a twitter link ➡️ I'll download you the video
 
-demo: https://wa.link/qex8wo
+demo: https://wa.link/iufz7t
 
 
 *7.* Send me a twitter link and write " -audio " ➡️ I'll send you the audio
 
-demo: https://wa.link/9ka95f
+demo: https://wa.link/kfrfim
 
-
-*7.* Send me an instagram link ➡️ I'll download you the video
-
-demo: https://wa.link/75e2cv
-
-
-*8.* Send me an instagram link and write " -audio " ➡️ I'll send you the audio
-
-demo: https://wa.link/hx7m9s
 
 
 To learn more or send feature requests, contact: whatsapphelper@protonmail.com
@@ -120,7 +111,7 @@ exports.ON_GROUP = ON_GROUP = 'Sorry I cannot be added to groups (for now 😉)'
 
 //Twitter
 
-exports.INVALID_TWEET = INVALID_TWEET = 'Sorry! This Tweet seems to be invalid! 🔒 \n\nPlease ensure the account is not private and the link contains a video'
+exports.INVALID_TWEET = INVALID_TWEET = 'Sorry! This Tweet seems to be invalid! 🔒 \n\nPlease ensure the account is not private and the link contains a video. \n\nThis video might be region locked for me'
 
 
 

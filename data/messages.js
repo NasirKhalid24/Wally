@@ -30,7 +30,7 @@ Here is what I can do:
 *2.* Send me a video ➡️ I'll send you an animated sticker
 
 
-*3.* Send a video and write " gif " ➡️ I'll send you a gif of the video
+*3.* Send a video and write " gif " in the caption of the video ➡️ I'll send you a gif of the video
 
 
 *4.* Send me a youtube link ➡️ I'll download you the video

@@ -28,6 +28,7 @@ module.exports = Twitter = async (client, message, arguments) => {
 
     // Get Info
     const info = await getVideoInfo(url);
+    // console.log(info)
     
     // If video private, undefined or url does not exist then info will be empty
     if(Object.keys(info).length === 0){
@@ -40,7 +41,13 @@ module.exports = Twitter = async (client, message, arguments) => {
         try{
             //http-832
             var position = info.formats.findIndex(x => x.format_id == 'http-832')
-            var tweet_url = info.formats[position].url
+
+            if(position !== -1 ){
+                var tweet_url = info.formats[position].url
+            }
+            else{
+                var tweet_url = info.formats[0].url
+            }
 
             if(info._duration_raw <= max_audio_duration){
                 
@@ -68,8 +75,14 @@ module.exports = Twitter = async (client, message, arguments) => {
         try{
             //http-832
             var position = info.formats.findIndex(x => x.format_id == 'http-832')
-            var tweet_url = info.formats[position].url
 
+            if(position !== -1 ){
+                var tweet_url = info.formats[position].url
+            }
+            else{
+                var tweet_url = info.formats[0].url
+            }
+          
             // If video is less than max length
             if(info._duration_raw <= max_video_duration){
 
@@ -86,6 +99,7 @@ module.exports = Twitter = async (client, message, arguments) => {
         }
 
         catch(error){
+            console.log(error)
 
             await client.sendText(message.from, messages.INVALID_TWEET);  
             // console.log("TWIITER FUNCTION ERROR = ", error, url);

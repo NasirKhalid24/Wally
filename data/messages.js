@@ -45,7 +45,7 @@ demo: https://wa.link/zd4n5i
 
 *6.* Send me a twitter link ➡️ I'll download you the video
 
-demo: https://wa.link/iufz7t
+demo: https://wa.link/n5thsr
 
 
 *7.* Send me a twitter link and write " -audio " ➡️ I'll send you the audio

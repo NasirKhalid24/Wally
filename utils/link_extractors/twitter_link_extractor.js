@@ -1,6 +1,6 @@
 module.exports = twitter_link_extractor = (message_text, return_val) => {
 
-    const TWITTER_REGEX = new RegExp("http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)?\/status\/([a-zA-Z0-9_]+.*)", "gm");
+    const TWITTER_REGEX = new RegExp("http(?:s)?:\/\/((?:www|mobile)\.)?twitter\.com\/([a-zA-Z0-9_]+)?\/status\/([a-zA-Z0-9_]+.*)", "gm");
 
     let links = message_text.match(TWITTER_REGEX)
     if(Array.isArray(links)){

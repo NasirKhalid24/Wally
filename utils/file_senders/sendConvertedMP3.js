@@ -38,7 +38,7 @@ module.exports = sendConvertedMP3 = async function ( url , client, from, name)  
             await client.sendText(from, f);
         }
         else{
-            console.log('Audio functions used today: ', ++constants.audio_counter)
+             ++constants.audio_counter
         }
 
     }

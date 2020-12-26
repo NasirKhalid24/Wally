@@ -6,6 +6,8 @@ const Help = require('../../commands/Help');
 const Terms_conditions = require('../../commands/Terms_conditions');
 const Twitter = require('../../commands/Twitter');
 const Instagram = require('../../commands/Instagram');
+const { createUserAgent } = require('@open-wa/wa-automate/dist/config/puppeteer.config');
+const Usage = require('../../commands/Usage');
 // const Facebook = require('../../commands/Facebook');
 // const Test = require('../commands/Test');
 
@@ -19,6 +21,13 @@ module.exports = message_parser = async(client, message) => {
             body = message.body;
         }else if(message.caption){
             body = message.caption;
+        }
+
+        if(constants.users.includes(message.from)){
+            var s = s
+        }
+        else{
+            constants.users.push(message.from)
         }
 
         let command_and_arguments = decode_message(body, constants.MESSAGE_PREFIX, constants.ARGUMENT_PREFIX, constants.VALUE_PREFIX);
@@ -63,6 +72,11 @@ module.exports = message_parser = async(client, message) => {
 
             case 'twitter':{
                 await Twitter(client, message, command_and_arguments.arguments);
+                break
+            }
+
+            case 'usage_root':{
+                await Usage(client, message, command_and_arguments.arguments);
                 break
             }
 

@@ -5,6 +5,7 @@ const sendConvertedMP3 = require('../utils/file_senders/sendConvertedMP3');
 const getVideoInfo = require('../utils/data_downloaders/getVideoInfo');
 const sendConvertedMP4 = require('../utils/file_senders/sendConvertedMP4');
 const messages = require('../data/messages');
+const constants = require('../data/constants');
 
 
 module.exports = Twitter = async (client, message, arguments) => {
@@ -52,7 +53,8 @@ module.exports = Twitter = async (client, message, arguments) => {
             if(info._duration_raw <= max_audio_duration){
                 
                 await client.sendText(message.from, messages.INFO_FOUND('Audio', info.title));
-                await sendConvertedMP3(tweet_url, client, message.from, `${info.title}.mp3`)
+                await sendConvertedMP3(tweet_url, client, message.from, `${info.title}.mp3`);
+                ++constants.twitter_audio_counter
 
             }
             else{
@@ -62,8 +64,13 @@ module.exports = Twitter = async (client, message, arguments) => {
 
         catch(error){
 
-            await client.sendText(message.from, messages.INVALID_TWEET);  
-            // console.log("TWIITER FUNCTION ERROR = ", error);
+            client.sendText(message.from, messages.UNKNOWN_ERROR('Twitter Audio'))
+                ++constants.twitter_audio_errors
+                console.log(`
+                Error when trying to process Twitter to MP3
+                From: ${message.from}
+                Error: ${error}
+                `)
 
         }
 
@@ -85,9 +92,9 @@ module.exports = Twitter = async (client, message, arguments) => {
             // If video is less than max length
             if(info._duration_raw <= max_video_duration){
 
-        
                 await client.sendText(message.from, messages.INFO_FOUND('Video', info.title));
                 await sendConvertedMP4(tweet_url, client, message.from, `${info.title}.mp4`);
+                ++constants.twitter_video_counter
         
             }
             else{
@@ -98,10 +105,13 @@ module.exports = Twitter = async (client, message, arguments) => {
         }
 
         catch(error){
-            console.log(error)
-
-            await client.sendText(message.from, messages.INVALID_TWEET);  
-            // console.log("TWIITER FUNCTION ERROR = ", error, url);
+            client.sendText(message.from, messages.UNKNOWN_ERROR('Twitter Video'))
+                ++constants.twitter_video_errors
+                console.log(`
+                Error when trying to process Twitter to MP4
+                From: ${message.from}
+                Error: ${error}
+                `)
             
         }
 

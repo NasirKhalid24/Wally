@@ -39,7 +39,7 @@ module.exports = sendConvertedMP4 = async function ( url , client, from, name)  
             await client.sendText(from, f);
         }
         else{
-            console.log('Video functions used today: ', ++constants.video_counter)
+            ++constants.video_counter
         }
        
     }

@@ -10,27 +10,51 @@ module.exports = Sticker = async (client, message, arguments) => {
   switch(message.type){
     case 'video':
       {
-        var vid_to_gif_duration = 10;
+        var vid_to_gif_duration = 6;
+        var file_size = 4000000;
    
-        if (message.duration <= vid_to_gif_duration){
+        if (message.duration <= vid_to_gif_duration && message.size < file_size){
           if(typeof message.caption !== 'undefined' && message.caption.toLowerCase().includes('gif')){
+            try{
             const mediaData = await wa.decryptMedia(message);
             const gifbase64 = `data:${message.mimetype};base64,${mediaData.toString(
               'base64'
             )}`;
             await client.sendVideoAsGif(message.from,gifbase64);  
-            console.log('Number of video to gif used', ++constants.gif_log);  
-            break    
+            ++constants.gif_log
+            break  
+            }
+            catch(error){
+              client.sendText(message.from, messages.UNKNOWN_ERROR('sticker'))
+              ++constants.gif_errors
+              
+              console.log(`
+              Error when trying to process MP4 to GIF
+              From: ${message.from}
+              Error: ${error}
+              `)
+            }  
           }
           else{
-          const mediaData = await wa.decryptMedia(message);
-          const videobase64 = `data:${message.mimetype};base64,${mediaData.toString(
-            'base64'
-          )}`;
-          await client.sendMp4AsSticker(message.from,videobase64);   
-          console.log('Number of video to sticker used', ++constants.mp4_sticker_log);  
- 
-          break  
+          try{
+            const mediaData = await wa.decryptMedia(message);
+            const videobase64 = `data:${message.mimetype};base64,${mediaData.toString(
+              'base64'
+            )}`;
+            await client.sendMp4AsSticker(message.from,videobase64,{fps: 08, startTime: `00:00:00.0`, endTime :  `00:00:06.0`, loop: 0, crop: false
+            });   
+            ++constants.mp4_sticker_log 
+            break  
+            }
+          catch(error){
+            client.sendText(message.from, messages.UNKNOWN_ERROR('Sticker'))
+              ++constants.mp4_sticker_errors
+              console.log(`
+              Error when trying to process MP4 to Sticker
+              From: ${message.from}
+              Error: ${error}
+              `)
+            }
           }  
         }
         else{
@@ -38,6 +62,7 @@ module.exports = Sticker = async (client, message, arguments) => {
           break
         }
       }
+
     case 'audio':
     case 'location':
     case 'vcard':
@@ -53,13 +78,24 @@ module.exports = Sticker = async (client, message, arguments) => {
             await client.sendText(message.from, messages.STICKER_INVALID_IMAGE);
         }
         else{
+          try{
           const mediaData = await wa.decryptMedia(message);
           const imageBase64 = `data:${message.mimetype};base64,${mediaData.toString(
             'base64'
           )}`;
 
           await client.sendImageAsSticker(message.from, imageBase64);
-          console.log('Sticker Functions used today', ++constants.sticker_counter)
+          ++constants.sticker_counter
+          }
+          catch(error){
+            client.sendText(message.from, messages.UNKNOWN_ERROR('Sticker'))
+            ++constants.sticker_errors
+            console.log(`
+            Error when trying to process Image to Sticker
+            From: ${message.from}
+            Error: ${error}
+            `)
+          }
         }
         break
     }
@@ -70,14 +106,25 @@ module.exports = Sticker = async (client, message, arguments) => {
     }
 
     case('image'):{
+      try{
         const mediaData = await wa.decryptMedia(message);
         const imageBase64 = `data:${message.mimetype};base64,${mediaData.toString(
           'base64'
         )}`;
 
         await client.sendImageAsSticker(message.from, imageBase64);
-        console.log('Sticker Functions used today', ++constants.sticker_counter)
+        ++constants.sticker_counter
         break
+      }
+      catch(error){
+        client.sendText(message.from, messages.UNKNOWN_ERROR('Sticker'))
+        ++constants.sticker_errors 
+        console.log(`
+        Error when trying to process Image to Sticker
+        From: ${message.from}
+        Error: ${error}
+        `)
+      }
     }
   }
 

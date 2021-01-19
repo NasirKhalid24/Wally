@@ -12,7 +12,7 @@ Enjoy! 😁`
 
 exports.STICKER_INVALID_IMAGE = STICKER_INVALID_IMAGE = 'Sorry! This media doesn\'t seem to be an image/video'
 
-exports.VIDEO_TO_STICKER_GIF_LENTGH = VIDEO_TO_STICKER_GIF_LENTGH = 'Sorry! The Video/GIF must be less than 8 seconds.'
+exports.VIDEO_TO_STICKER_GIF_LENTGH = VIDEO_TO_STICKER_GIF_LENTGH = 'Sorry! The Video/GIF must be less than 5 seconds.'
 
 
 
@@ -86,6 +86,8 @@ Please contact whatsapphelper@protonmail.com for further information or notices 
 exports.INFO_FOUND  = (type, title) => {return `${type} of "${title}" found\nDownloading ⏳`}
 exports.MAX_LIMIT = (type, limit) =>  { return `This ${type} file is too large to send through Whatsapp \n\nPlease ensure the ${type} is less than ${limit} minutes or less` }
 
+//Unknown Errors
+exports.UNKNOWN_ERROR = (type) => {return `Sorry! Something went wrong when trying to process your ${type}! \n\nWe would appreciate it if you could email us on what went wrong here: whatsapphelper@protonmail.com`}
 
 
 

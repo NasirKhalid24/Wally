@@ -21,7 +21,9 @@ async function launch(){
             logConsoleErrors: false,
 
             //kill the process if the browser crashes/is closed manually
-            killProcessOnBrowserClose: true
+            killProcessOnBrowserClose: true,
+
+            cacheEnabled:false
             
         });
         await start(client);
@@ -38,7 +40,7 @@ const queue = new PQueue({
 const proc = async (client, message) => {
     await message_parser(client, message);
     
-    // await client.clearChat(message.from)
+    await client.clearChat(message.from)
     
     return true;
 }

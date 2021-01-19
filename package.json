@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@open-wa/wa-automate": "^3.1.9",
+    "@open-wa/wa-automate": "^3.1.13",
     "datauri": "^3.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "puppeteer": "^5.5.0",

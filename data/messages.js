@@ -2,6 +2,10 @@
 
 exports.STICKER_NON_IMAGE_MESSAGE = STICKER_NON_IMAGE_MESSAGE = `Hello! 👋
 
+Wally is back! 🎉🤖
+
+Whatsapp took us down due to some issues but we are active now. All features are active 
+
 To learn about my commands, message me "*#help*"
 
 Contact us at: whatsapphelper@protonmail.com

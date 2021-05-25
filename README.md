@@ -1,6 +1,15 @@
-# Whatsapp-Helper
+# Wally 
 
-Open-WA based Whatsapp account to automate tasks
+Open-WA based Whatsapp bot to automate tasks
+
+### Features
+
+- Image to sticker
+- Video to sticker
+- Download Yotube video
+- Download Yotube audio
+- Download Twitter video
+- Download Twitter audio
 
 ### How to install and run
 
